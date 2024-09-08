@@ -8,13 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MovieController extends AbstractController
 {
-    #[Route('/movie/{name}', name: 'app_movie', defaults: ['name' => null], methods: ['GET', 'HEAD'])]
-    public function index($name): JsonResponse
+    #[Route('/movie', name: 'movie')]
+    public function index()
     {
-        return $this->json([
-            'message' => $name,
-            'path' => 'src/Controller/MovieController.php',
-        ]);
+        $movies = ['The Matrix', 'The Matrix Reloaded', 'The Matrix Revolutions', 'The Matrix Resurrections'];
+
+        return $this->render('index.html.twig', array(
+            'movies' => $movies,
+        ));
     }
     
 }
